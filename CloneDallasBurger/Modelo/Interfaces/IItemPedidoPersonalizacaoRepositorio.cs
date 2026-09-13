@@ -8,10 +8,10 @@ namespace CloneDallasBurger.Modelo.Interfaces
 {
     public interface IItemPedidoPersonalizacaoRepositorio
     {
-        public Task<ItemPedidoPersonalizacao> ObterItemPedidoPersonalizacaoPorIdAsync(int Id);
+        public Task<ItemPedidoPersonalizacao?> ObterItemPedidoPersonalizacaoPorIdAsync(int Id);
         public Task<ItemPedidoPersonalizacao> CriarItemPedidoPersonalizacaoAsync(ItemPedidoPersonalizacao itemPedidoPersonalizacao);
         public Task<List<ItemPedidoPersonalizacao>> ObterTodosItensPedidoPersonalizacaoAsync();
         public Task<ItemPedidoPersonalizacao> AtualizarItemPedidoPersonalizacaoAsync(ItemPedidoPersonalizacao itemPedidoPersonalizacao);
-        public Task<ItemPedidoPersonalizacao> DeletarItemPedidoPersonalizacaoAsync(int Id);
+        public Task<ItemPedidoPersonalizacao?> DeletarItemPedidoPersonalizacaoAsync(int Id);
     }
 }

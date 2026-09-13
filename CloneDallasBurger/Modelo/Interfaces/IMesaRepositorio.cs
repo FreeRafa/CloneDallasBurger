@@ -9,11 +9,11 @@ namespace CloneDallasBurger.Modelo.Interfaces
 {
     public interface IMesaRepositorio
     {
-        public Task<Mesa> ObterMesaPorIdAsync(int Id);
+        public Task<Mesa?> ObterMesaPorIdAsync(int Id);
         public Task<Mesa> CriarMesaAsync(Mesa mesa);
         public Task<List<Mesa>> ObterTodasMesasAsync();
         public Task<Mesa> AtualizarMesaAsync(Mesa mesa);
-        public Task<Mesa> DeletarMesaAsync(int Id);
+        public Task<Mesa?> DeletarMesaAsync(int Id);
 
         //Listar Mesas livres, ocupadas, reservadas ou em manutenção
         public Task<List<Mesa>> ObterMesasPorStatusAsync(MesaStatus mesaStatus);
