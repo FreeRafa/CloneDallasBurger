@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CloneDallasBurger.Modelo.Entidades
 {
-    public class Ingredientes
+    public class Ingrediente
     {
         public int IngredienteId { get; set; }
         public string Nome { get; set; } = string.Empty;

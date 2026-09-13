@@ -4,18 +4,18 @@ using System.Text;
 
 namespace CloneDallasBurger.Modelo.Entidades
 {
-    public class Itens_Pedidos_Personalizacao
+    public class ItemPedidoPersonalizacao
     {
-        public int ItemPedidoPersonalizacaoId { get; set; }
+        public int PersonalizacaoId { get; set; }
         public string Acao { get; set; } = string.Empty;
         public decimal PrecoAdicional { get; set; }
 
 
 
         public int ItemPedidoId { get; set; }
-        public Itens_Pedidos? Itens_Pedido { get; set; }
+        public ItemPedido? ItemPedido { get; set; }
 
         public int IngredienteId { get; set; }
-        public Ingredientes? Ingredientes { get; set; }
+        public Ingrediente? Ingrediente { get; set; }
     }
 }

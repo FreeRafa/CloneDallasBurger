@@ -13,22 +13,22 @@ namespace CloneDallasBurger.Infraestrutura.Data
         {
         }
 
-        public DbSet<Funcionarios> funcionarios { get; set; }
-        public DbSet<Pedidos> pedidos { get; set; }
-        public DbSet<Mesas> mesas { get; set; }
-        public DbSet<Itens_Pedidos> itens_pedidos { get; set; }
-        public DbSet<Itens_Pedidos_Personalizacao> itens_Pedidos_Personalizacaos { get; set; }
-        public DbSet<Produto_Ingredientes> produto_Ingredientes { get; set; }
-        public DbSet<Ingredientes> ingredientes { get; set; }
-        public DbSet<Produtos> produtos { get; set; }
-        public DbSet<Categorias> categorias { get; set; }
+        public DbSet<Funcionario> Funcionario { get; set; }
+        public DbSet<Pedido> Pedido { get; set; }
+        public DbSet<Mesa> Mesa { get; set; }
+        public DbSet<ItemPedido> ItemPedido { get; set; }
+        public DbSet<ItemPedidoPersonalizacao> ItemPedidoPersonalizacao { get; set; }
+        public DbSet<ProdutoIngrediente> ProdutoIngrediente { get; set; }
+        public DbSet<Ingrediente> Ingrediente { get; set; }
+        public DbSet<Produto> Produto { get; set; }
+        public DbSet<Categoria> Categoria { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
             
-            modelBuilder.Entity<Produto_Ingredientes>()
+            modelBuilder.Entity<ProdutoIngrediente>()
                 .HasKey(pi => new { pi.ProdutoId, pi.IngredienteId });
         }
     }

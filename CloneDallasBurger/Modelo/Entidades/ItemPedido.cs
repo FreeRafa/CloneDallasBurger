@@ -5,18 +5,18 @@ using System.Text;
 
 namespace CloneDallasBurger.Modelo.Entidades
 {
-    public class Itens_Pedidos
+    public class ItemPedido
     {
         public int ItemPedidoId { get; set; }
         public int Quantidade { get; set; }
         public decimal PrecoUnitario { get; set; }
         public string Observacao { get; set; } = string.Empty;
-        public Itens_Pedidos_Status Status { get; set; }
+        public ItemPedidoStatus Status { get; set; }
 
 
         public int PedidoId { get; set; }
-        public Pedidos? Pedidos { get; set; }
+        public Pedido? Pedido { get; set; }
         public int ProdutoId { get; set; }
-        public Produtos? Produtos { get; set; }
+        public Produto? Produto { get; set; }
     }
 }

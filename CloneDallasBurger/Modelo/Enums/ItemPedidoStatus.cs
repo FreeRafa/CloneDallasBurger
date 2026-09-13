@@ -4,11 +4,12 @@ using System.Text;
 
 namespace CloneDallasBurger.Modelo.Enums
 {
-    public enum MesasStatus
+    public enum ItemPedidoStatus
     {
-        Livre,
-        Ocupada,
-        Reservada,
-        Manutencao
+        Pendente,
+        EmPreparo,
+        Pronto,
+        Entregue,
+        Cancelado
     }
 }
