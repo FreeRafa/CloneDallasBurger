@@ -1,9 +1,7 @@
 ﻿using CloneDallasBurger.Modelo.Entidades;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 
 namespace CloneDallasBurger.Infraestrutura.Configuracao
 {

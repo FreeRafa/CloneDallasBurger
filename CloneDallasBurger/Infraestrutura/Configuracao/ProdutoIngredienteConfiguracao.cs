@@ -9,6 +9,8 @@ namespace CloneDallasBurger.Infraestrutura.Data.Configuracoes
     {
         public void Configure(EntityTypeBuilder<ProdutoIngrediente> builder)
         {
+            builder.ToTable("ProdutoIngrediente");
+
             // Chave composta
             builder.HasKey(pi => new { pi.ProdutoId, pi.IngredienteId });
 

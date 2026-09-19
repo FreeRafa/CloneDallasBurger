@@ -28,3 +28,7 @@ foreach (var c in categorias)
 //var produtoRepositorio = new ProdutoRepositorio(context);
 //var produtos = await produtoRepositorio.ObterTodosProdutosAsync();
 //Console.WriteLine($"Produtos lidos: {produtos.Count}");
+
+var produtoIngredienteRepositorio = new ProdutoIngredienteRepositorio(context);
+var ligacoes = await produtoIngredienteRepositorio.ObterTodosProdutosIngredientesAsync();
+Console.WriteLine($"Ligações lidas: {ligacoes.Count}");
