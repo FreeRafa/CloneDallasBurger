@@ -28,6 +28,7 @@ namespace CloneDallasBurger.Infraestrutura.Configuracao
                 .IsRequired();
 
             builder.Property(i => i.Status)
+                .HasConversion<string>()
                 .HasMaxLength(20)
                 .IsRequired();
 

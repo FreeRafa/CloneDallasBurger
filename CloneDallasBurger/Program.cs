@@ -32,3 +32,11 @@ foreach (var c in categorias)
 var produtoIngredienteRepositorio = new ProdutoIngredienteRepositorio(context);
 var ligacoes = await produtoIngredienteRepositorio.ObterTodosProdutosIngredientesAsync();
 Console.WriteLine($"Ligações lidas: {ligacoes.Count}");
+
+var mesaRepositorio = new MesaRepositorio(context);
+var mesas = await mesaRepositorio.ObterTodasMesasAsync();
+Console.WriteLine($"Mesas lidas: {mesas.Count}");
+
+var pedidoRepositorio = new PedidoRepositorio(context);
+var pedidos = await pedidoRepositorio.ObterTodosPedidosAsync();
+Console.WriteLine($"Pedidos lidos: {pedidos.Count}");
