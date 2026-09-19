@@ -27,9 +27,7 @@ namespace CloneDallasBurger.Infraestrutura.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            
-            modelBuilder.Entity<ProdutoIngrediente>()
-                .HasKey(pi => new { pi.ProdutoId, pi.IngredienteId });
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(CloneDallasBurgerContext).Assembly);
         }
     }
 }

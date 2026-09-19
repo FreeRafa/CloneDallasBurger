@@ -1,5 +1,8 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using CloneDallasBurger.Infraestrutura.Data;
+using CloneDallasBurger.Infraestrutura.Repositorio;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 
 IConfiguration config = new ConfigurationBuilder()
     .SetBasePath(Directory.GetCurrentDirectory())
@@ -8,15 +11,20 @@ IConfiguration config = new ConfigurationBuilder()
 
 string connectionString = config.GetConnectionString("CloneDallasBurger")!;
 
-using (SqlConnection conn = new SqlConnection(connectionString))
+var options = new DbContextOptionsBuilder<CloneDallasBurgerContext>()
+    .UseSqlServer(connectionString)
+    .LogTo(Console.WriteLine, LogLevel.Information)
+    .Options;
+
+using var context = new CloneDallasBurgerContext(options);
+var categoriaRepositorio = new CategoriaRepositorio(context);
+
+var categorias = await categoriaRepositorio.ObterTodasCategoriasAsync();
+foreach (var c in categorias)
 {
-    try
-    {
-        conn.Open();
-        Console.WriteLine("Ligação feita com sucesso!");
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine("Erro ao ligar: " + ex.Message);
-    }
+    Console.WriteLine($"{c.Ordem} - {c.Nome}");
 }
+
+//var produtoRepositorio = new ProdutoRepositorio(context);
+//var produtos = await produtoRepositorio.ObterTodosProdutosAsync();
+//Console.WriteLine($"Produtos lidos: {produtos.Count}");
