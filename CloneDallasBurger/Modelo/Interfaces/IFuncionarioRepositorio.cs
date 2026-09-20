@@ -14,6 +14,7 @@ namespace CloneDallasBurger.Modelo.Interfaces
         public Task<Funcionario> AtualizarFuncionarioAsync(Funcionario funcionario);
         public Task<Funcionario?> DeletarFuncionarioAsync(int Id);
 
+        // Por hora nao vou validar entra no sistema sem senha 
         // Validar funcionário por login (usuário e senha)
         public Task<Funcionario?> ObterFuncionarioPorUsuarioAsync(string usuario);
     }

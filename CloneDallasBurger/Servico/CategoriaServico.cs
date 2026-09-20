@@ -17,12 +17,12 @@ namespace CloneDallasBurger.Servico
 
         public async Task<Categoria?> ObterCategoriaPorIdAsync(int id) 
         {
-            var categoria = await _categoriaRepositorio.ObterCategoriaPorIdAsync(id);
+            var existenteCat = await _categoriaRepositorio.ObterCategoriaPorIdAsync(id);
 
-            if (categoria == null)
+            if (existenteCat == null)
                 throw new KeyNotFoundException($"Categoria com id {id} nao encontrado");
 
-            return categoria;
+            return existenteCat;
         }
 
         public async Task<Categoria> CriarCategoriaAsync(Categoria categoria) 
