@@ -8,7 +8,7 @@ namespace CloneDallasBurger.Modelo.Entidades
     {
         public int ProdutoId { get; set; }
         public string Nome { get; set; } = string.Empty;
-        public string Descricao { get; set; } = string.Empty;
+        public string? Descricao { get; set; }
         public decimal Preco { get; set; }
         public bool Vegano { get; set; }
         public bool PermiteTrocaProteina { get; set; }

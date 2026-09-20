@@ -1,5 +1,6 @@
 ﻿using CloneDallasBurger.Infraestrutura.Data;
 using CloneDallasBurger.Modelo.Entidades;
+using CloneDallasBurger.Modelo.Enums;
 using CloneDallasBurger.Modelo.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -47,6 +48,13 @@ namespace CloneDallasBurger.Infraestrutura.Repositorio
                 await _context.SaveChangesAsync();
             }
             return produto;
+        }
+
+        public async Task<List<Produto>> ObterProdutosPorCategoriaAsync(int categoriaId)
+        {
+            return await _context.Produtos
+                .Where(p => p.CategoriaId == categoriaId)
+                .ToListAsync();
         }
     }
 }

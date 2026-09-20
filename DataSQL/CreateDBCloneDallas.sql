@@ -71,8 +71,7 @@ FuncionarioId INT NOT NULL FOREIGN KEY REFERENCES Funcionario(FuncionarioId),
 NumeroPessoas INT NOT NULL DEFAULT 1, -- quantidade de pessoas na mesa, usado para dividir a conta
 [Status] VARCHAR(20) NOT NULL DEFAULT 'Aberto'
          CHECK (Status IN ('Aberto','EmPreparo','Entregue','Fechado','Cancelado')),
-DataAbertura DATETIME NOT NULL DEFAULT GETDATE(),
-DataFechamento DATETIME NULL,
+
 FormaPagamento VARCHAR(20) NULL
                CHECK (FormaPagamento IN ('Cartao')), -- por enquanto so cartao; campo pronto pra receber outras formas depois
 ValorTotal DECIMAL(8,2) NULL,     -- preenchido no fechamento da conta

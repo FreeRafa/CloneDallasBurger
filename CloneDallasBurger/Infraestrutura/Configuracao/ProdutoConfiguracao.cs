@@ -15,11 +15,11 @@ namespace CloneDallasBurger.Infraestrutura.Configuracao
 
             builder.Property(p => p.Nome)
                 .HasMaxLength(100)
-                .IsRequired(false);
+                .IsRequired();
 
             builder.Property(p => p.Descricao)
                 .HasMaxLength(500)
-                .IsRequired();
+                .IsRequired(false);
 
             builder.Property(p => p.Preco)
                 .HasPrecision(6, 2)

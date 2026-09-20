@@ -2,6 +2,7 @@
 using CloneDallasBurger.Modelo.Entidades;
 using CloneDallasBurger.Modelo.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using CloneDallasBurger.Modelo.Enums;
 
 namespace CloneDallasBurger.Infraestrutura.Repositorio
 {
@@ -41,6 +42,12 @@ namespace CloneDallasBurger.Infraestrutura.Repositorio
                 await _context.SaveChangesAsync();
             }
             return pedido;
+        }
+
+        public async Task<Pedido?> ObterPedidoAbertoPorMesaAsync(int mesaId)
+        {
+            return await _context.Pedidos
+                .SingleOrDefaultAsync(p => p.MesaId == mesaId && p.Status == PedidoStatus.Aberto);
         }
     }
 }

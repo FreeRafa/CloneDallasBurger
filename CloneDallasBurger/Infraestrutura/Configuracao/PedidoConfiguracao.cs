@@ -27,23 +27,16 @@ namespace CloneDallasBurger.Infraestrutura.Configuracao
                 .HasColumnType("datetime")
                 .IsRequired();
 
-            builder.Property(p => p.DataFechamento)
-                .HasColumnType("datetime")
-                .IsRequired();
-
-            builder.Property(p => p.FormaPagamento)
-                .IsRequired();
-
             builder.Property(p => p.ValorTotal)
                 .HasPrecision(8, 2)
-                .IsRequired();
+                .IsRequired(false);
 
             builder.Property(p => p.ValorPorPessoa)
                 .HasPrecision(8, 2)
-                .IsRequired();
+                .IsRequired(false);
 
             builder.Property(p => p.Observacao)
-                .IsRequired();
+                .IsRequired(false);
 
             builder.HasOne(p => p.Mesa)
                 .WithMany()

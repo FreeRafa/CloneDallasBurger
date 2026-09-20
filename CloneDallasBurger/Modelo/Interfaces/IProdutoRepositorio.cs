@@ -13,5 +13,6 @@ namespace CloneDallasBurger.Modelo.Interfaces
         public Task<List<Produto>> ObterTodosProdutosAsync();
         public Task<Produto> AtualizarProdutoAsync(Produto produto);
         public Task<Produto?> DeletarProdutoAsync(int Id);
+        public Task<List<Produto>> ObterProdutosPorCategoriaAsync(int categoriaId);
     }
 }

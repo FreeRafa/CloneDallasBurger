@@ -10,7 +10,7 @@ namespace CloneDallasBurger.Modelo.Entidades
         public int ItemPedidoId { get; set; }
         public int Quantidade { get; set; }
         public decimal PrecoUnitario { get; set; }
-        public string Observacao { get; set; } = string.Empty;
+        public string? Observacao { get; set; } 
         public ItemPedidoStatus Status { get; set; }
 
 

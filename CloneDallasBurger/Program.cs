@@ -25,9 +25,9 @@ foreach (var c in categorias)
     Console.WriteLine($"{c.Ordem} - {c.Nome}");
 }
 
-//var produtoRepositorio = new ProdutoRepositorio(context);
-//var produtos = await produtoRepositorio.ObterTodosProdutosAsync();
-//Console.WriteLine($"Produtos lidos: {produtos.Count}");
+var produtoRepositorio = new ProdutoRepositorio(context);
+var produtos = await produtoRepositorio.ObterTodosProdutosAsync();
+Console.WriteLine($"Produtos lidos: {produtos.Count}");
 
 var produtoIngredienteRepositorio = new ProdutoIngredienteRepositorio(context);
 var ligacoes = await produtoIngredienteRepositorio.ObterTodosProdutosIngredientesAsync();
@@ -40,3 +40,11 @@ Console.WriteLine($"Mesas lidas: {mesas.Count}");
 var pedidoRepositorio = new PedidoRepositorio(context);
 var pedidos = await pedidoRepositorio.ObterTodosPedidosAsync();
 Console.WriteLine($"Pedidos lidos: {pedidos.Count}");
+
+var burgers = await produtoRepositorio.ObterProdutosPorCategoriaAsync(1);
+Console.WriteLine($"Burgers: {burgers.Count}");
+
+var pedidoAberto = await pedidoRepositorio.ObterPedidoAbertoPorMesaAsync(1);
+Console.WriteLine(pedidoAberto is null
+    ? "Mesa 1 sem pedido aberto"
+    : $"Pedido {pedidoAberto.PedidoId} aberto na mesa 1");
