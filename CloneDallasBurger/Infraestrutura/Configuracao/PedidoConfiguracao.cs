@@ -23,10 +23,6 @@ namespace CloneDallasBurger.Infraestrutura.Configuracao
                 .HasMaxLength(20)
                 .IsRequired();
 
-            builder.Property(p => p.DataAbertura)
-                .HasColumnType("datetime")
-                .IsRequired();
-
             builder.Property(p => p.ValorTotal)
                 .HasPrecision(8, 2)
                 .IsRequired(false);

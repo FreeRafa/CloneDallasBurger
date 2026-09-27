@@ -1,8 +1,12 @@
-﻿using CloneDallasBurger.Infraestrutura.Data;
+﻿using CloneDallasBurger.Apresentacao;
+using CloneDallasBurger.Infraestrutura.Data;
 using CloneDallasBurger.Infraestrutura.Repositorio;
+using CloneDallasBurger.Modelo.Interfaces;
+using CloneDallasBurger.Servico;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.DependencyInjection;
+
 
 IConfiguration config = new ConfigurationBuilder()
     .SetBasePath(Directory.GetCurrentDirectory())
@@ -11,40 +15,25 @@ IConfiguration config = new ConfigurationBuilder()
 
 string connectionString = config.GetConnectionString("CloneDallasBurger")!;
 
-var options = new DbContextOptionsBuilder<CloneDallasBurgerContext>()
-    .UseSqlServer(connectionString)
-    .LogTo(Console.WriteLine, LogLevel.Information)
-    .Options;
+var services = new ServiceCollection();
 
-using var context = new CloneDallasBurgerContext(options);
-var categoriaRepositorio = new CategoriaRepositorio(context);
+services.AddDbContext<CloneDallasBurgerContext>(options =>
+    options.UseSqlServer(connectionString));
 
-var categorias = await categoriaRepositorio.ObterTodasCategoriasAsync();
-foreach (var c in categorias)
-{
-    Console.WriteLine($"{c.Ordem} - {c.Nome}");
-}
+services.AddScoped<IFuncionarioRepositorio, FuncionarioRepositorio>();
+services.AddScoped<ICategoriaRepositorio, CategoriaRepositorio>();
+services.AddScoped<IProdutoRepositorio, ProdutoRepositorio>();
+services.AddScoped<IMesaRepositorio, MesaRepositorio>();
+services.AddScoped<IPedidoRepositorio, PedidoRepositorio>();
+services.AddScoped<IProdutoIngredienteRepositorio, ProdutoIngredienteRepositorio>();
+services.AddScoped<MesaServico>();
+services.AddScoped<RealizarPedido>();
 
-var produtoRepositorio = new ProdutoRepositorio(context);
-var produtos = await produtoRepositorio.ObterTodosProdutosAsync();
-Console.WriteLine($"Produtos lidos: {produtos.Count}");
+services.AddScoped<FuncionarioServico>();
+services.AddScoped<RealizarPedido>();
 
-var produtoIngredienteRepositorio = new ProdutoIngredienteRepositorio(context);
-var ligacoes = await produtoIngredienteRepositorio.ObterTodosProdutosIngredientesAsync();
-Console.WriteLine($"Ligações lidas: {ligacoes.Count}");
+using var provider = services.BuildServiceProvider();
+using var scope = provider.CreateScope();
 
-var mesaRepositorio = new MesaRepositorio(context);
-var mesas = await mesaRepositorio.ObterTodasMesasAsync();
-Console.WriteLine($"Mesas lidas: {mesas.Count}");
-
-var pedidoRepositorio = new PedidoRepositorio(context);
-var pedidos = await pedidoRepositorio.ObterTodosPedidosAsync();
-Console.WriteLine($"Pedidos lidos: {pedidos.Count}");
-
-var burgers = await produtoRepositorio.ObterProdutosPorCategoriaAsync(1);
-Console.WriteLine($"Burgers: {burgers.Count}");
-
-var pedidoAberto = await pedidoRepositorio.ObterPedidoAbertoPorMesaAsync(1);
-Console.WriteLine(pedidoAberto is null
-    ? "Mesa 1 sem pedido aberto"
-    : $"Pedido {pedidoAberto.PedidoId} aberto na mesa 1");
+var realizarPedido = scope.ServiceProvider.GetRequiredService<RealizarPedido>();
+await realizarPedido.IniciarPedido();
